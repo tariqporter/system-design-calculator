@@ -1,11 +1,31 @@
-# Create React App with Electron Forge Demo
+## A simple System Design Calculator
 
-**Installation:**
+Enter any equation, using
 
-```sh
-npm i && npm run dev
+- - for multiply
+- / for divide
+- ^ To the power of
+- - for addition
+- - for subtract
+
+Brackets can also be used `3 * (1 + 2)`
+As well as
+
+- k for Kila
+- m for Mega
+- g for Giga
+- t for Tera
+
+Full units are not used ie. kb,mb etc as they are not known.
+For example we may type `2M` to mean 2 million users or 2MB
+
+An example of use:
+
+```
+3k * (1g + 2g)
+// = 9T
 ```
 
-**Tutorial:**
+### Building for your system
 
-[Read the full tutorial on dev.to here](https://dev.to/mandiwise/electron-apps-made-easy-with-create-react-app-and-electron-forge-560e) 👩‍💻
+You may build a version for your system to the `/out` folder by running `yarn package`
