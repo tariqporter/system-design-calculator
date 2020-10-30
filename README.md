@@ -2,11 +2,11 @@
 
 Enter any equation, using
 
-- - for multiply
+- \* for multiply
 - / for divide
 - ^ To the power of
-- - for addition
-- - for subtract
+- \+ for addition
+- \- for subtract
 
 Brackets can also be used `3 * (1 + 2)`
 As well as
