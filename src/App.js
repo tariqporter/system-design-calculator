@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { TextField, Typography } from "@material-ui/core";
+import "./App.css";
+import { calculate } from "./calculate";
 
-function App() {
+export default function App() {
+  const [eq, setEq] = useState("");
+  const [answer, setAnswer] = useState(["", ""]);
+
+  const onChange = (e) => {
+    const val = e.target.value;
+    const ans = calculate(val);
+    setAnswer(ans);
+    setEq(val);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <TextField
+          style={{ width: 300 }}
+          label="Enter equation"
+          value={eq}
+          onChange={onChange}
+        />
+        <div>
+          <Typography display="inline" variant="h4">
+            {answer[0]}
+          </Typography>
+          <Typography display="inline" variant="h6" color="textSecondary">
+            {answer[1]}
+          </Typography>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
