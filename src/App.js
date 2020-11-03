@@ -22,6 +22,7 @@ export default function App() {
           label="Enter equation"
           value={eq}
           onChange={onChange}
+          autoFocus
         />
         <div>
           <Typography display="inline" variant="h4">
