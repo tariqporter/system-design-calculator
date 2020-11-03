@@ -42,8 +42,15 @@ export const calculate = (s) => {
 
   const getNums = () => {
     let start = i;
-    while (isNum()) i++;
-    return [TYPES.NUM, parseInt(s.substring(start, i), 10)];
+    let hasPeriod = false;
+    while (isNum() || s[i] === ".") {
+      if (s[i] === ".") {
+        if (hasPeriod) break;
+        hasPeriod = true;
+      }
+      i++;
+    }
+    return [TYPES.NUM, parseFloat(s.substring(start, i))];
   };
 
   const isOp = () => {
