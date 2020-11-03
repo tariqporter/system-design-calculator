@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { TextField, Typography } from "@material-ui/core";
+import { TextField, Typography, IconButton } from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
 import "./App.css";
 import { calculate } from "./calculate";
 
@@ -14,6 +15,11 @@ export default function App() {
     setEq(val);
   };
 
+  const clear = () => {
+    setAnswer(["", ""]);
+    setEq("");
+  };
+
   return (
     <div className="App">
       <div>
@@ -23,7 +29,15 @@ export default function App() {
           value={eq}
           onChange={onChange}
           autoFocus
+          InputProps={{
+            endAdornment: (
+              <IconButton onClick={clear} size="small">
+                <ClearIcon />
+              </IconButton>
+            ),
+          }}
         />
+
         <div>
           <Typography display="inline" variant="h4">
             {answer[0]}
