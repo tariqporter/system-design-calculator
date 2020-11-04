@@ -1,12 +1,12 @@
-import React, { createRef, useState } from "react";
-import { TextField, Typography, IconButton } from "@material-ui/core";
-import ClearIcon from "@material-ui/icons/Clear";
-import "./App.css";
-import { calculate } from "./calculate";
+import React, { createRef, useState } from 'react';
+import { TextField, Typography, IconButton } from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
+import './App.css';
+import { calculate } from './calculate';
 
 export default function App() {
-  const [eq, setEq] = useState("");
-  const [answer, setAnswer] = useState(["", ""]);
+  const [eq, setEq] = useState('');
+  const [answer, setAnswer] = useState(['', '']);
   const inputRef = createRef();
 
   const onChange = (e) => {
@@ -17,8 +17,8 @@ export default function App() {
   };
 
   const clear = () => {
-    setAnswer(["", ""]);
-    setEq("");
+    setAnswer(['', '']);
+    setEq('');
     inputRef.current.focus();
   };
 
