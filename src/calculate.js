@@ -3,27 +3,27 @@ export const calculate = (s) => {
   let i = 0;
 
   const TYPES = {
-    SPACE: "SPACE",
-    NUM: "NUM",
-    OP: "OP",
-    BRACKET: "BRACKET",
-    UNIT: "UNIT",
+    SPACE: 'SPACE',
+    NUM: 'NUM',
+    OP: 'OP',
+    BRACKET: 'BRACKET',
+    UNIT: 'UNIT',
   };
 
-  const SPACES = " ";
-  const NUMS = "0123456789";
-  const OPS = "+-/*^";
-  const BRACKETS = "()";
-  const UNITS = ["k", "m", "g", "t"];
+  const SPACES = ' ';
+  const NUMS = '0123456789';
+  const OPS = '+-/*^';
+  const BRACKETS = '()';
+  const UNITS = ['k', 'm', 'g', 't'];
 
   const POWS = {
-    "(": 0,
-    ")": 0,
-    "-": 1,
-    "+": 1,
-    "*": 2,
-    "/": 2,
-    "^": 3,
+    '(': 0,
+    ')': 0,
+    '-': 1,
+    '+': 1,
+    '*': 2,
+    '/': 2,
+    '^': 3,
   };
 
   const isSpace = () => {
@@ -43,8 +43,8 @@ export const calculate = (s) => {
   const getNums = () => {
     let start = i;
     let hasPeriod = false;
-    while (isNum() || s[i] === ".") {
-      if (s[i] === ".") {
+    while (isNum() || s[i] === '.') {
+      if (s[i] === '.') {
         if (hasPeriod) break;
         hasPeriod = true;
       }
@@ -78,10 +78,10 @@ export const calculate = (s) => {
   };
 
   const multNum = (num, unit) => {
-    if (unit === "k") return num * 1024;
-    else if (unit === "m") return num * 1024 ** 2;
-    else if (unit === "g") return num * 1024 ** 3;
-    else if (unit === "t") return num * 1024 ** 4;
+    if (unit === 'k') return num * 1024;
+    else if (unit === 'm') return num * 1024 ** 2;
+    else if (unit === 'g') return num * 1024 ** 3;
+    else if (unit === 't') return num * 1024 ** 4;
   };
 
   const stack = [];
@@ -92,11 +92,11 @@ export const calculate = (s) => {
     const n2 = num2[1];
     const o = op[1];
     let num = 0;
-    if (o === "+") num = n1 + n2;
-    else if (o === "-") num = n1 - n2;
-    else if (o === "*") num = n1 * n2;
-    else if (o === "/") num = n1 / n2;
-    else if (o === "^") num = n1 ** n2;
+    if (o === '+') num = n1 + n2;
+    else if (o === '-') num = n1 - n2;
+    else if (o === '*') num = n1 * n2;
+    else if (o === '/') num = n1 / n2;
+    else if (o === '^') num = n1 ** n2;
     return [TYPES.NUM, num];
   };
 
@@ -127,14 +127,14 @@ export const calculate = (s) => {
   };
 
   const simplify = (num) => {
-    if (num < 1024) return [num.toLocaleString(), ""];
-    else if (num < 1024 ** 2)
-      return [Math.round(num / 1024).toLocaleString(), "K"];
-    else if (num < 1024 ** 3)
-      return [Math.round(num / 1024 ** 2).toLocaleString(), "M"];
-    else if (num < 1024 ** 4)
-      return [Math.round(num / 1024 ** 3).toLocaleString(), "G"];
-    else return [Math.round(num / 1024 ** 4).toLocaleString(), "T"];
+    let ans;
+    if (num < 1024) ans = [num, ''];
+    else if (num < 1024 ** 2) ans = [num / 1024, 'K'];
+    else if (num < 1024 ** 3) ans = [num / 1024 ** 2, 'M'];
+    else if (num < 1024 ** 4) ans = [num / 1024 ** 3, 'G'];
+    else ans = [num / 1024 ** 4, 'T'];
+    if (Math.round(ans[0]) !== ans[0]) ans[0] = ans[0].toFixed(2);
+    return ans;
   };
 
   while (i < s.length) {
@@ -149,7 +149,7 @@ export const calculate = (s) => {
       ops.push(op);
     } else if (isBracket()) {
       const bracket = getBracket();
-      if (bracket[1] === "(") ops.push(bracket);
+      if (bracket[1] === '(') ops.push(bracket);
       else {
         process(bracket);
         ops.pop();
@@ -163,5 +163,5 @@ export const calculate = (s) => {
     // console.log([...stack], [...ops]);
   }
   processEnd();
-  return stack.length ? simplify(stack[0][1]) : ["", ""];
+  return stack.length ? simplify(stack[0][1]) : ['', ''];
 };
